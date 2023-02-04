@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage">
+
+    <ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Image Source="icon.png" BackgroundColor="Black" HorizontalOptions="FillAndExpand"></Image>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout.Padding>
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS, Android, UWP">
+                            <On.Value>
+                                5, 5, 5, 5
+                            </On.Value>
+                        </On>
+                    </OnPlatform>
+                </StackLayout.Padding>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Pwned Pass allows you to search the database of " FontSize="Large" />
+                            <Span Text="haveibeenpwned.com"
+                              FontSize="Large"
+                              TextColor="Blue"
+                              TextDecorations="Underline">
+                            </Span>
+                            <Span Text=" for a list of accounts (or email addresses) that have been leaked in a data breach that was exposed to the internet. " FontSize="Large" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="https://haveibeenpwned.com/" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Have I Been Pwned was created by " FontSize="Large" />
+                            <Span Text="Troy Hunt"
+                              FontSize="Large"
+                              TextColor="Blue"
+                              TextDecorations="Underline">
+                            </Span>
+                            <Span Text=". " FontSize="Large" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="https://www.troyhunt.com/" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Pwned Pass was created by " FontSize="Large" />
+                            <Span Text="Simon Foster"
+                              FontSize="Large"
+                              TextColor="Blue"
+                              TextDecorations="Underline">
+                            </Span>
+                            <Span Text=", who is a Developer working in the North of England. He has been working in IT departments since 2006 and has a wide range of experience. More recently in the Software Development space but also SysAdmin, Server Infrastructure and DevOps." FontSize="Large" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="https://www.funkysi1701.com/" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label />
+                <Button Text="Rate Pwned Pass" BackgroundColor="LightGreen" HorizontalOptions="FillAndExpand">
+                    <Button.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="https://www.google.com/" />
+                    </Button.GestureRecognizers>
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
