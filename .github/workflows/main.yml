@@ -53,6 +53,11 @@ jobs:
         with:
           name: android-ci-build
           path: PwnedPass/bin/Release/net7.0-android/*Signed.a*
+          
+      - name: deploy to play store
+        uses: r0adkll/upload-google-play@v1
+        with:
+          releaseFiles: PwnedPass\bin\Release\net7.0-android\com.companyname.PwnedPass-Signed.aab
   build-windows:
     runs-on: windows-2022
     name: Windows Build
