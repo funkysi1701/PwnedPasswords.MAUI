@@ -1,4 +1,4 @@
-﻿namespace MauiApp1;
+﻿namespace PwnedPass;
 
 public partial class MainPage : ContentPage
 {
