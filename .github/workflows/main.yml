@@ -62,7 +62,7 @@ jobs:
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
 
       - name: Setup .NET 7
-        uses: actions/setup-dotnet@926f4420227aaf87acf2840f360e4f2475f13b3b
+        uses: actions/setup-dotnet@c82240598bfca0c9d812c49ee3659d4204cb95c7
         with:
           dotnet-version: 7.0.x
 
