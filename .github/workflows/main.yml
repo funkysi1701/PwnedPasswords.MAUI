@@ -1,0 +1,82 @@
+name: CI Build
+
+on:
+  push:
+    branches: [ develop,main ]
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.gitignore'
+      - '**/*.gitattributes'
+  pull_request:
+    branches: [ develop,main ]
+  workflow_dispatch:
+permissions:
+  contents: read
+
+env:
+  DOTNET_NOLOGO: true                     # Disable the .NET logo
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true # Disable the .NET first time experience
+  DOTNET_CLI_TELEMETRY_OPTOUT: true  
+
+jobs:
+  build-android:
+    runs-on: windows-2022
+    name: Android Build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET 7
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+          include-prerelease: true
+
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'microsoft'
+          java-version: '11'
+
+      - name: Install MAUI Workloads
+        run: |
+          dotnet workload install android --ignore-failed-sources
+          dotnet workload install maui --ignore-failed-sources
+
+      - name: Restore Dependencies
+        run: dotnet restore PwnedPass/PwnedPass.csproj
+
+      - name: Build MAUI Android
+        run: dotnet build PwnedPass/PwnedPass.csproj -c Release -f net7.0-android --no-restore
+
+      - name: Upload Android Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: android-ci-build
+          path: PwnedPass/bin/Release/net7.0-android/*Signed.a*
+  build-windows:
+    runs-on: windows-2022
+    name: Windows Build
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@f095bcc56b7c2baf48f3ac70d6d6782f4f553222
+
+      - name: Setup .NET 7
+        uses: actions/setup-dotnet@3447fd6a9f9e57506b15f895c5b76d3b197dc7c2
+        with:
+          dotnet-version: 7.0.x
+
+      - name: Install MAUI Workload
+        run: dotnet workload install maui --ignore-failed-sources
+
+      - name: Restore Dependencies
+        run: dotnet restore PwnedPass/PwnedPass.csproj
+
+      - name: Build MAUI Windows
+        run: dotnet publish PwnedPass/PwnedPass.csproj -c Release -f net7.0-windows10.0.19041.0 --no-restore /p:PublishReadyToRun=false
+
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@65d862660abb392b8c4a3d1195a2108db131dd05
+        with:
+          name: mauibeach-windows-ci-build
+          path: PwnedPass/bin/Release/net7.0-windows10.0.19041.0/win10-x64/AppPackages/PwnedPass*/PwnedPass*.msix
