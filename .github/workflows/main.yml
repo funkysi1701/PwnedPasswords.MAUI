@@ -59,7 +59,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@f095bcc56b7c2baf48f3ac70d6d6782f4f553222
+        uses: actions/checkout@96f53100ba2a5449eb71d2e6604bbcd94b9449b5
 
       - name: Setup .NET 7
         uses: actions/setup-dotnet@9b407708251d576f3dac6969e4c0c453a00ff5d5
