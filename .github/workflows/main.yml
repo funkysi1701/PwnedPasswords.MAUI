@@ -76,7 +76,7 @@ jobs:
         run: dotnet publish PwnedPass/PwnedPass.csproj -c Release -f net7.0-windows10.0.19041.0 --no-restore /p:PublishReadyToRun=false
 
       - name: Upload Windows Artifact
-        uses: actions/upload-artifact@65d862660abb392b8c4a3d1195a2108db131dd05
+        uses: actions/upload-artifact@a8a3f3ad30e3422c9c7b888a15615d19a852ae32
         with:
           name: mauibeach-windows-ci-build
           path: PwnedPass/bin/Release/net7.0-windows10.0.19041.0/win10-x64/AppPackages/PwnedPass*/PwnedPass*.msix
