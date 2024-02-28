@@ -49,7 +49,7 @@ jobs:
         run: dotnet build PwnedPass/PwnedPass.csproj -c Release -f net7.0-android --no-restore
 
       - name: Upload Android Artifact
-        uses: actions/upload-artifact@v4.3.0
+        uses: actions/upload-artifact@v4.3.1
         with:
           name: android-ci-build
           path: PwnedPass/bin/Release/net7.0-android/*Signed.a*
@@ -59,10 +59,10 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+        uses: actions/checkout@b32f140b0c872d58512e0a66172253c302617b90
 
       - name: Setup .NET 7
-        uses: actions/setup-dotnet@4d6c8fcf3c8f7a60068d26b594648e99df24cee3
+        uses: actions/setup-dotnet@3e6b9fe3930cac7c59c651af5de1514b47a805b9
         with:
           dotnet-version: 7.0.x
 
@@ -76,7 +76,7 @@ jobs:
         run: dotnet publish PwnedPass/PwnedPass.csproj -c Release -f net7.0-windows10.0.19041.0 --no-restore /p:PublishReadyToRun=false
 
       - name: Upload Windows Artifact
-        uses: actions/upload-artifact@3a8048248f2f288c271830f8ecf2a1c5d8eb0e9a
+        uses: actions/upload-artifact@ef09cdac3e2d3e60d8ccadda691f4f1cec5035cb
         with:
           name: mauibeach-windows-ci-build
           path: PwnedPass/bin/Release/net7.0-windows10.0.19041.0/win10-x64/AppPackages/PwnedPass*/PwnedPass*.msix
